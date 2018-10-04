@@ -90,3 +90,26 @@ docker-compose run --rm web bundle install
 # specフォルダが作成される
 docker-compose run --rm web bundle exec rails g rspec:install
 ```
+
+## install ruboco
+
+fix Gemfile
+
+```ruby
+group :development do
+  gem 'rubocop', require: false
+end
+```
+
+```bash
+docker-compose run --rm web bundle install
+```
+
+`.rubocop.yml` を編集
+
+```bash
+# チェック
+docker-compose run --rm web bundle exec rubocop
+# 自動で修正可能な箇所を修正
+docker-compose run --rm web bundle exec rubocop -a
+```

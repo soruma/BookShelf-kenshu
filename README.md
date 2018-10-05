@@ -1,28 +1,3 @@
-# README
-
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
 # 手順
 
 ## create application
@@ -113,3 +88,121 @@ docker-compose run --rm web bundle exec rubocop
 # 自動で修正可能な箇所を修正
 docker-compose run --rm web bundle exec rubocop -a
 ```
+
+# アプリ開発
+
+## モデル作成
+
+### Person追加
+
+  | 論理名 | 物理名 | タイプ | バリデーション | 備考 |
+  |-|-|-|-|-|
+  | 名前 | name | string | 必須 | |
+
+### Book追加
+
+  | 論理名 | 物理名 | タイプ |バリデーション| 備考 |
+  |-|-|-|-|-|
+  | タイトル | title | string | 必須 | |
+  | 著者 | author_id | 必須 | integer | Personとの関係あり |
+
+### BookShelf追加
+
+  | 論理名 | 物理名 | タイプ |バリデーション| 備考 |
+  |-|-|-|-|-|
+  | 本 | book | reference | 必須 | Bookとの関係 |
+  | 場所 | point | string | 任意 | |
+
+### Book修正
+
+  | 論理名 | 物理名 | タイプ |バリデーション| 備考 |
+  |-|-|-|-|-|
+  | 廃盤 | out_of_print | boolean | 必須(true, false) | |
+
+ヒント: https://qiita.com/mktakuya/items/a13c2175f0f0d9871038
+
+### コンソールから修正
+
+1. Person登録
+1. Book登録(x2)
+1. BookShelf登録
+1. Book修正(廃盤)
+
+## view と コントローラー
+
+ボタンとテキストボックスはbootstrap
+localeファイルを指定すること、modelのロケールファイルとviewのロケールファイルを個別で作成すること
+
+### Book
+
+#### index
+
+tableで実装
+
+表示項目
+
+* Bookの一覧
+  * 本のタイトル
+  * 著者の選択(コンボボックス)
+  * 廃盤(廃盤の場合、廃盤と表示、テーブルのヘッダーは空文字)
+* 明細から詳細(show)へのリンク
+
+#### show
+
+ul, liで表示
+
+* タイトル
+* 著者
+* 廃盤(テキストボックス)
+
+#### add
+
+ul, liで表示
+
+* タイトル
+* 著者(コンボボックス)
+* 廃盤(チェックボックス)
+
+#### delete
+
+本を削除
+
+### BookShelf
+
+#### index
+
+tableで実装
+
+表示項目
+
+* BookShelfの一覧
+ * 本のタイトル
+ * 場所
+* 明細から詳細(show)へのリンク
+
+#### show
+
+ul, liで表示
+
+* id
+* 本のタイトル
+* 本の著者
+* 場所
+* 削除ボタン
+
+#### add
+
+ul, liで表示
+
+* 本の選択(コンボボックス)
+* 場所
+* 追加ボタン
+
+#### delete
+
+本棚から消せる本を消せる
+
+#### リファクタリング
+
+* routingを1行で
+* 著者を削除したら、本が消える

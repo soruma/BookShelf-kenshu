@@ -50,6 +50,12 @@ production:
   password: <%= ENV['BOOK_SHELF_DATABASE_PASSWORD'] %>
 ```
 
+DB作成
+
+```bash
+docker-compose run --rm web bundle exec rails db:create
+```
+
 ## install rspec
 
 fix Gemfile
@@ -110,7 +116,7 @@ docker-compose run --rm web bundle exec rubocop -a
 
   | 論理名 | 物理名 | タイプ |バリデーション| 備考 |
   |-|-|-|-|-|
-  | 本 | book | reference | 必須 | Bookとの関係 |
+  | 本 | book | references | 必須 | Bookとの関係 |
   | 場所 | point | string | 任意 | |
 
 ### Book修正
@@ -121,7 +127,7 @@ docker-compose run --rm web bundle exec rubocop -a
 
 ヒント: https://qiita.com/mktakuya/items/a13c2175f0f0d9871038
 
-### コンソールから修正
+### コンソールからデータを登録・修正
 
 1. Person登録
 1. Book登録(x2)

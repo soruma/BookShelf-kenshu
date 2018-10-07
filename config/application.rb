@@ -30,7 +30,18 @@ module BookShelf
     # -- all .rb files in that directory are automatically loaded after loading
     # the framework and any gems in your application.
 
-    # Don't generate system test files.
-    config.generators.system_tests = nil
+    config.generators do |g|
+      system_tests = false
+
+      g.test_framework :rspec,
+        fixtures: true,
+        view_specs: false,
+        helper_specs: true,
+        routing_specs: false,
+        controller_specs: false,
+        request_specs: true
+
+      g.fixture_replacement :factory_bot, dir: 'spec/factories'
+    end
   end
 end

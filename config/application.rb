@@ -30,6 +30,13 @@ module App
     # -- all .rb files in that directory are automatically loaded after loading
     # the framework and any gems in your application.
 
+    config.active_record.default_timezone = :local
+    config.i18n do |l|
+      l.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
+      l.default_locale = :ja
+    end
+    config.time_zone = 'Tokyo'
+
     config.generators do |g|
       system_tests = false
 

@@ -14,8 +14,8 @@ docker-compose run --rm web bundle install
 # docker-compose run --rm web rails new -h # newの仕方を検索
 # docker-compose run --rm web rails new -h | grep database # dbに何が使えるか
 # docker-compose run --rm web rails new -h | grep test # test作成をスキップする方法
-# アプリ作成 databaseはpostgresql, テストとシステムテスト作成は行わない
-docker-compose run --rm web bundle exec rails new -d postgresql -T --skip-system-test .
+# アプリ作成 databaseはpostgresql, テスト作成は行わない
+docker-compose run --rm web bundle exec rails new -d postgresql -T .
 ```
 
 DB接続先修正(docker対応)

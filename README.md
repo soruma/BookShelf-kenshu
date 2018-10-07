@@ -4,9 +4,7 @@
 
 ```bash
 # Copy docker-compose.yml
-# docker-compose.ymlのvolumesの/appをアプリ名に変更
 # Copy Dockerfile
-# Dockerfileのmkdir, WORKDIRの行をそれぞれ、アプリ名に変更
 docker-compose build
 docker-compose run --rm web bundle init
 # Gemfile が作成されるので #gem 'rails' のコメントを外す

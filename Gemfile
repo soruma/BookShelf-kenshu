@@ -63,6 +63,8 @@ group :development do
 
   gem 'rubocop', require: false
   gem 'seed-fu'
+
+  gem 'bullet'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

@@ -1,0 +1,10 @@
+h1 = t('.h1')
+
+- @authors.each do |author|
+  h3 = author.name
+
+  table
+    tbody
+      - author.books.each do |book|
+        tr
+          td = book.title
